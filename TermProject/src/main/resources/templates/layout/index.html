@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+
+<div class="container mt-5">
+    <div>
+    <a th:href="@{/layout/create}" class="btn btn-primary my-3">New Layout</a>
+        <br>
+    </div>
+<div class="row">
+    <div class="col-md-4" th:each="layout: ${layouts}">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${layout.name}"></h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a th:href="@{/layout/{id}(id=${layout.id})}" class="btn btn-info">Details</a>
+                    <a th:href="@{/layout/edit/{id}(id=${layout.id})}" class="btn btn-warning">Edit</a>
+                    <a th:href="@{/layout/delete/{id}(id=${layout.id})}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

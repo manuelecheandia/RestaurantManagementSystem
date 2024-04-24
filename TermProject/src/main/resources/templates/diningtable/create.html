@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Dining Table</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+<div class="container mt-5">
+<h1>Add</h1>
+<h4>Dining Table</h4>
+<hr/>
+
+
+<form method="post" th:action="@{/diningtable/create/{id}(id=${layout.id})}" th:object="${diningtable}">
+ <input th:field="*{layout}" th:value="*{layout}" type="hidden" >
+    <div class="form-group">
+        <label >Number of seats: </label> <br><br>
+        <input class="form-control" id="numberOfSeats" name="numberOfSeats" th:field="*{numberOfSeats}">
+        <div class="alert alert-warning" th:errors="*{numberOfSeats}"></div>
+    </div>
+    <input class="btn btn-primary" type="submit" value="add">
+</form>
+
+
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

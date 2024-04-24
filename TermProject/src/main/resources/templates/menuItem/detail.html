@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Item Details</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h3 class="mb-4">Menu Item Details - <span th:text="${menuItem.name}" class="text-primary"></span></h3>
+    <hr>
+    <dl class="row">
+        <dt class="col-sm-4 font-weight-bold">Name</dt>
+        <dd class="col-sm-8" th:text="${menuItem.name}"></dd>
+        <dt class="col-sm-4 font-weight-bold">Description</dt>
+        <dd class="col-sm-8" th:text="${menuItem.description}"></dd>
+        <dt class="col-sm-4 font-weight-bold">Menu</dt>
+        <dd class="col-sm-8" th:text="${menuItem.menu.name}"></dd>
+    </dl>
+    <a th:href="@{/menuItems}" class="btn btn-info mt-3">Go Back</a>
+</div>
+</body>
+<footer th:replace="~{footer :: footer}"></footer>
+</html>

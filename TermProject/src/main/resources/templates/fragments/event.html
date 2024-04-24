@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--/*@thymesVar id="event" type="nbcc.termproject.entities.Event"*/-->
+<div th:fragment="inputs" th:object="${event}">
+    <div class="form-group">
+        <label for="layout">Select Layout:</label>
+        <select class="form-control" id="layout" th:field="*{layout}">
+            <option value="">--- Select Layout ---</option>
+            <!--/*@thymesVar id="layouts" type="List<nbcc.termproject.entities.Layout>"*/-->
+            <!--/*@thymesVar id="layout" type="nbcc.termproject.entities.Layout"*/-->
+            <option th:each="layout : ${layouts}" th:value="${layout.id}" th:text="${layout.name}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="menu">Select Menu:</label>
+        <select class="form-control" id="menu" th:field="*{menu}">
+            <option value="">--- Select a Menu ---</option>
+            <option th:each="menu : ${menus}" th:value="${menu.id}" th:text="${menu.name}"></option>
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" class="form-control" id="startDate" th:field="*{startDate}"
+               required>
+    </div>
+    <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
+    </div>
+    <div class="form-group">
+        <label for="seatingDuration">Seating Duration (minutes):</label>
+        <input type="number" class="form-control" id="seatingDuration" th:field="*{seatingDuration}" required>
+    </div>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" th:field="*{name}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" th:field="*{description}" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" step="0.01" class="form-control" id="price" th:field="*{price}" required>
+    </div>
+
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

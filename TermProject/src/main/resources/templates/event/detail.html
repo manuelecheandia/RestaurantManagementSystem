@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Event Details - <span th:text="${event.name}" class="text-primary"></span></h2>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card mb-4">
+                <h5 class="card-header"><span th:text="${event.name}"></span></h5>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-5 font-weight-bold">Start Date</dt>
+                        <dd class="col-sm-7" th:text="${event.startDate}"></dd>
+                        <dt class="col-sm-5 font-weight-bold">End Date</dt>
+                        <dd class="col-sm-7" th:text="${event.endDate}"></dd>
+                        <dt class="col-sm-5 font-weight-bold">Seating Duration</dt>
+                        <dd class="col-sm-7" th:text="${event.seatingDuration} + ' minutes'"></dd>
+                        <dt class="col-sm-5 font-weight-bold">Name</dt>
+                        <dd class="col-sm-7" th:text="${event.name}"></dd>
+                        <dt class="col-sm-5 font-weight-bold">Description</dt>
+                        <dd class="col-sm-7" th:text="${event.description}"></dd>
+                        <dt class="col-sm-5 font-weight-bold">Layout</dt>
+                        <dd class="col-sm-7" th:text="${event.layout.name}"></dd>
+                        <dt class="col-sm-5 font-weight-bold">Menu</dt>
+                        <dd class="col-sm-7" th:text="${event.menu.name}"></dd>
+                        <dt class="col-sm-5 font-weight-bold">Price</dt>
+                        <dd class="col-sm-7" th:text="${#numbers.formatCurrency(event.price)}"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="card-title">Seatings</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Start Date and Time</th>
+                            <th>Reservations</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="seating : ${event.seatings}">
+                            <td th:text="${seating.startDateAndTime}"></td>
+                            <td th:text="${seating.reservation.size()}"></td>
+
+
+                            <td>
+                                <a th:href="@{/seating/edit/{id}(id=${seating.id})}" class="btn btn-warning btn-sm">Edit</a>
+                                <a th:href="@{/seating/delete/{id}(id=${seating.id})}" class="btn btn-danger btn-sm ml-2">Delete</a>
+                                <a th:href="@{/reservation/create/{id}(id=${seating.id})}" class="btn btn-outline-success btn-sm ml-2">Request Reservation</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer bg-light">
+                    <a th:href="@{/seating/create/{id}(id=${event.id})}" class="btn btn-success btn-block">Create Seating</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/reservations/{id}(id=${event.id})}" class="btn btn-info mt-3">Reservations</a>
+    <a th:href="@{/events}" class="btn btn-info mt-3">Go Back</a>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

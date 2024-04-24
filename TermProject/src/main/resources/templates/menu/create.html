@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Menu</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h2>Create Menu</h2>
+    <form th:object="${menu}" th:action="@{/menu/create}" method="POST">
+        <div th:replace="fragments/menu :: inputs"></div>
+        <button type="submit" class="btn btn-primary">Create Menu</button>
+        <a th:href="@{/menus}" class="btn btn-info"> Cancel</a>
+    </form>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

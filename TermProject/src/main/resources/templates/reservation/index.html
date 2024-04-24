@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-3">
+    <h2>Reservations</h2>
+    <form action="#" th:action="@{/reservations}" method="get">
+        <div class="form-group">
+            <label>Event:</label>
+            <select class="form-control" id="event" name="event">
+                <option value="">--SELECT EVENT--</option>
+                <option th:each="event : ${events}"
+                        th:value="${event.id}"
+                        th:text="${event.name}"
+                        th:selected="${event.id == param.event}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <select class="form-control" id="status" name="status" >
+                <option value="" >---SELECT STATUS---</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="denied">Denied</option>
+            </select>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary mt-2">Filter</button>
+            <a th:href="@{/reservations}" class="btn btn-info mt-2">Clear Filter</a>
+        </div>
+    </form>
+
+    <div class="table-responsive mt-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Event</th>
+                <th>Start Date</th>
+                <th>Name</th>
+                <th>Status</th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation : ${reservations}">
+                <td th:text="${reservation.seating.event.name}"></td>
+                <td th:text="${reservation.seating.event.startDate}"></td>
+                <td th:text="${reservation.firstName+ ' ' + reservation.lastName}"></td>
+
+                <td th:text="${reservation.status}"></td>
+
+                <td>
+                    <a th:href="@{/reservation/{id}(id=${reservation.id})}" class="btn btn-info btn-sm">Details</a>
+                    <a th:href="@{/reservation/edit/{id}(id=${reservation.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/reservation/delete/{id}(id=${reservation.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

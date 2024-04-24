@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Event</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h2>Create Event</h2>
+    <form th:object="${event}" th:action="@{/event/create}" method="POST">
+        <div th:replace="fragments/event :: inputs"></div>
+        <button type="submit" class="btn btn-primary">Create Event</button>
+    </form>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

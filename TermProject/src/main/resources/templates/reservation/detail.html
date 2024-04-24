@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Reservation Details - <span th:text="${reservation.firstName +' '+ reservation.lastName}" class="text-primary"></span></h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <h5 class="card-header">Reservation</h5>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4 font-weight-bold">Name:</dt>
+                        <dd class="col-sm-8" th:text="${reservation.firstName +' '+ reservation.lastName}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Event</dt>
+                        <dd class="col-sm-8" th:text="${reservation.seating.event.name}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Start Date</dt>
+                        <dd class="col-sm-8" th:text="${reservation.seating.event.startDate}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Email Address</dt>
+                        <dd class="col-sm-8" th:text="${reservation.emailAddress}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Group Size</dt>
+                        <dd class="col-sm-8" th:text="${reservation.groupSize}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Seating Date and Time</dt>
+                        <dd class="col-sm-8" th:text="${reservation.seating.startDateAndTime}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Status</dt>
+                        <dd class="col-sm-8" th:text="${reservation.status}"></dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
+    <a th:href="@{/reservations}" class="btn btn-info mt-3">Go Back</a>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

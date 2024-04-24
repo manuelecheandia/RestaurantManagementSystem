@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Hotel</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+
+<div class="container mt-5 d-flex flex-column justify-content-center align-items-center"  style="height: 75vh;">
+    <div class="text-center mb-5">
+        <h1>Welcome to Our Restaurant System</h1>
+        <p>Discover delicious dishes and great dining experiences!</p>
+    </div>
+    <div th:if="${user} != null">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a href="/layouts" class="btn btn-info btn-lg mr-2 p-lg-5">Layouts</a>
+                <a href="/events" class="btn btn-info btn-lg mr-2 p-lg-5">Events</a>
+                <a href="/reservations" class="btn btn-info btn-lg mr-2 p-lg-5">Reservations</a>
+                <a href="/menus" class="btn btn-info btn-lg mr-2 p-lg-5">Menus</a>
+                <a href="/menuItems" class="btn btn-info btn-lg p-lg-5">Menu Items</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

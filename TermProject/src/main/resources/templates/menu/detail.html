@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Details</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Menu Details - <span th:text="${menu.name}" class="text-primary"></span></h2>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card mb-4">
+                <h5 class="card-header"><span th:text="${menu.name}"></span></h5>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4 font-weight-bold">Name</dt>
+                        <dd class="col-sm-8" th:text="${menu.name}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Description</dt>
+                        <dd class="col-sm-8" th:text="${menu.description}"></dd>
+                        <dt class="col-sm-4 font-weight-bold">Date Created</dt>
+                        <dd class="col-sm-8" th:text="${menu.dateCreated}"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="card-title">Menu Items</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="menuItem : ${menu.menuItems}">
+                            <td th:text="${menuItem.name}"></td>
+                            <td th:text="${menuItem.description}"></td>
+                            <td>
+                                <a th:href="@{/menuItem/edit/{id}(id=${menuItem.id})}" class="btn btn-warning btn-sm">Edit</a>
+                                <a th:href="@{/menuItem/delete/{id}(id=${menuItem.id})}" class="btn btn-danger btn-sm ml-2">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer bg-light">
+                    <a th:href="@{/menuItem/create/{id}(id=${menu.id})}" class="btn btn-success btn-block">Create Menu Item</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a th:href="@{/menus}" class="btn btn-info mt-3">Go Back</a>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

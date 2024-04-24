@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menus</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-3">
+    <h2>Menus</h2>
+    <a href="/menu/create" class="btn btn-primary my-3">Create Menu</a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Menu Items</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="menu : ${menus}">
+                <td th:text="${menu.name}"></td>
+                <td th:text="${menu.description}"></td>
+                <td th:text="${menu.menuItems.size()}"></td>
+                <td th:text="${menu.dateCreated}"></td>
+                <td>
+                    <a th:href="@{/menu/{id}(id=${menu.id})}" class="btn btn-info btn-sm">Details</a>
+                    <a th:href="@{/menu/edit/{id}(id=${menu.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/menu/delete/{id}(id=${menu.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

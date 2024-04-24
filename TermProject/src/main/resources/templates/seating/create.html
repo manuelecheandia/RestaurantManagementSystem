@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Seating</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-5">
+    <h2>Create Seating</h2>
+    <form method="post" th:action="@{/seating/create/{id}(id=${event.id})}" th:object="${seating}">
+        <input th:field="*{event}" th:value="*{event}" type="hidden" >
+        <div class="form-group">
+            <label for="startDateAndTime">Start Date and Time:</label>
+            <input type="datetime-local" class="form-control" id="startDateAndTime" th:field="*{startDateAndTime}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Seating</button>
+    </form>
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>

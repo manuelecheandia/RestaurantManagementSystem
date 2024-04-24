@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+<header th:replace="~{nav :: navbar}"></header>
+<div class="container mt-3">
+    <h2>Events</h2>
+    <a href="/event/create" class="btn btn-primary my-3">Create Event</a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Seating Duration</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Layout</th>
+                <th>Menu</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="event : ${events}">
+                <td th:text="${event.startDate}"></td>
+                <td th:text="${event.endDate}"></td>
+                <td th:text="${event.seatingDuration} + ' minutes'"></td>
+                <td th:text="${event.name}"></td>
+                <td th:text="${#numbers.formatCurrency(event.price)}"></td>
+                <td th:text="${event.layout.name}"></td>
+                <td th:text="${event.menu.name}"></td>
+                <td>
+                    <a th:href="@{/event/{id}(id=${event.id})}" class="btn btn-info btn-sm">Details</a>
+                    <a th:href="@{/event/edit/{id}(id=${event.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/event/delete/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<footer th:replace="~{footer :: footer}"></footer>
+</body>
+</html>
